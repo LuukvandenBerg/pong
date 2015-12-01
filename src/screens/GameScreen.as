@@ -4,6 +4,7 @@ package screens
 	import actors.Ball;
 	import actors.Paddle;
 	import actors.Player;
+	import actors.Barra;
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -30,7 +31,7 @@ package screens
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-				for (var i:int = 0; i < 2; i++) 
+				for (var i:int = 0; i < 1; i++) 
 			{
 				balls.push(new Ball());
 				addChild(balls[i]);
@@ -42,8 +43,10 @@ package screens
 			}	
 			paddles.push(new AI());
 			paddles.push(new Player());
+			paddles.push(new Barra());
+			paddles.push(new Barra());
 			paddles[0].balls = balls;
-			for (i = 0; i < 2; i++) 
+			for (i = 0; i < paddles.length; i++) 
 			{
 				
 				addChild(paddles[i]);
@@ -52,6 +55,15 @@ package screens
 			paddles[0].x = stage.stageWidth - 100;
 			
 			paddles[1].x = 100;
+			
+			paddles[2].x = 500;
+			
+			paddles[2].y = 100;
+			
+			paddles[3].x = 300;
+			
+			paddles[3].y = 200;
+			
 			
 			scoreboard = new Scoreboard();
 			addChild(scoreboard);
@@ -101,7 +113,7 @@ package screens
 		
 		private function checkScore():void 
 		{
-			if (scoreboard.player1 >= 10 || scoreboard.player2 >= 10)
+			if (scoreboard.player1 >= 10 || scoreboard.player2 >= 100)
 			{
 				destroy();
 				dispatchEvent(new Event(GAME_OVER));
